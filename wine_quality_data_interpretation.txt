@@ -1,0 +1,227 @@
+# Histograms Interpretation
+
+- fixed_acidity
+
+Distribution: Bell-shaped, slightly right-skewed.
+Most values: Cluster around 6–8 g/L.
+Insight: Fairly normal distribution with few wines on the acidic extremes.
+
+- volatile_acidity
+
+Distribution: Right-skewed.
+Most values: Between 0.2–0.4 g/L.
+Insight: Majority of wines have low volatile acidity, but a few outliers reach above 0.6–1.0.
+
+- citric_acid
+
+Distribution: Right-skewed.
+Most values: 0–0.4 g/L.
+Insight: Many wines have low citric acid content, with a sharp drop-off after 0.5.
+
+- residual_sugar
+
+Distribution: Heavily right-skewed.
+Most values: 0–10 g/L.
+Insight: Sweetness levels vary, but a large number of wines have very little residual sugar; a few outliers reach up to 60+ g/L.
+
+- chlorides
+
+Distribution: Right-skewed.
+Most values: Between 0.03–0.08 g/L.
+Insight: Most wines have low chloride content; a few outliers push above 0.2.
+
+- free_sulfur_dioxide
+
+Distribution: Right-skewed.
+Most values: 0–50 mg/L.
+Insight: Majority of wines use a small amount of free SO₂, but some outliers exceed 100 mg/L.
+
+- total_sulfur_dioxide
+
+Distribution: Near-normal.
+Most values: 50–200 mg/L.
+Insight: More balanced, with a reasonable range; a few outliers over 300 mg/L.
+
+- density
+
+Distribution: Sharp peak around 0.99–1.0.
+Insight: Most wines fall within a very tight density range (as expected — wines typically have similar densities).
+
+- pH
+
+Distribution: Normal.
+Most values: 3.0–3.4.
+Insight: Wines are mildly acidic, centered around pH 3.2.
+
+- sulphates
+
+Distribution: Slight right skew.
+Most values: 0.4–0.7 g/L.
+Insight: Moderate sulphate levels in most wines; a few outliers up to 1.0 g/L.
+
+- alcohol
+
+Distribution: Almost uniform between 8–14%.
+Insight: Good spread of alcohol content; no heavy skew or peaks.
+
+- quality
+
+Distribution: Slightly left-skewed (meaning more lower scores).
+Most values: 5 and 6.
+Insight: Most wines are rated average; very few wines get 3, 4, 7, or 8.
+
+*Summary*
+
+Several variables are right-skewed: residual_sugar, chlorides, volatile_acidity.
+pH, total_sulfur_dioxide, and fixed_acidity are reasonably normally distributed.
+alcohol content is evenly spread, indicating good variability.
+Most wines are of average quality (5–6) with relatively few very poor or excellent scores.
+
+
+# Boxplot Interpretation:
+
+- fixed_acidity
+
+Median: Around 7.
+Range: 4–10.
+Outliers: Present below 5 and above 10–14.
+Insight: Mostly balanced with a few high outliers.
+
+- volatile_acidity
+
+Median: Around 0.3.
+Range: 0.1–0.6.
+Outliers: Quite a few on the higher side (above 0.6 to 1.0).
+Insight: Some wines have significantly higher volatile acidity, which might affect taste.
+
+- citric_acid
+
+Median: 0.25.
+Range: 0–0.5.
+Outliers: Few above 0.6–1.5.
+Insight: Majority have moderate citric acid, with a few high spikes.
+
+- residual_sugar
+
+Median: ~2 g/L.
+Range: 0–5.
+Outliers: Many outliers above 10, some reaching 60.
+Insight: Extreme outliers — a handful of very sweet wines.
+
+- chlorides
+
+Median: ~0.07.
+Range: 0.03–0.1.
+Outliers: Frequent above 0.1 to 0.3.
+Insight: Most wines have low chloride, but many high outliers.
+
+- free_sulfur_dioxide
+
+Median: ~30 mg/L.
+Range: 5–60.
+Outliers: Many above 80–200.
+Insight: Heavy use of sulfur dioxide in some wines.
+
+- total_sulfur_dioxide
+
+Median: ~120.
+Range: 50–200.
+Outliers: Several beyond 250–400.
+Insight: Notable for wines with very high preservative levels.
+
+- density
+
+Median: 0.995.
+Range: 0.99–1.0.
+Outliers: Few above 1.0–1.04.
+Insight: Tight clustering around typical wine density.
+
+- pH
+
+Median: ~3.2.
+Range: 2.9–3.4.
+Outliers: Present on both lower (2.8) and higher (3.6–3.8) ends.
+Insight: Wines typically mildly acidic.
+
+- sulphates
+
+Median: ~0.5.
+Range: 0.3–0.7.
+Outliers: Notable above 0.8–1.0.
+Insight: Most wines have moderate sulphate levels; some elevated.
+
+- alcohol
+
+Median: ~10.2%.
+Range: 9–12%.
+Outliers: A few above 12.5–14%.
+Insight: Good variation; most wines cluster around the median.
+
+*Summary*
+
+Right-skewed variables (like residual_sugar, free_sulfur_dioxide, total_sulfur_dioxide, chlorides) have multiple high outliers.
+Symmetric or near-normal variables: fixed_acidity, pH, density.
+Moderate spread variables: volatile_acidity, citric_acid, sulphates, alcohol.
+Potential for log transformation: residual_sugar, total_sulfur_dioxide, and chlorides before ML modeling to reduce skew and improve performance.
+
+
+# Correlation Heatmap interpretation
+
+Correlation values range from -1 to +1:
++1 = Perfect positive correlation
+-1 = Perfect negative correlation
+0 = No linear correlation
+
+- Strong Positive Correlations:
+
+Free sulfur dioxide ↔ Total sulfur dioxide: 0.62
+Expected, as free SO₂ is a part of total SO₂.
+
+Residual sugar ↔ Density: 0.84
+High sugar content increases liquid density — perfectly logical for wine.
+
+Total sulfur dioxide ↔ Density: 0.53
+Wines with more preservatives also tend to be denser.
+
+Alcohol ↔ Quality: 0.44
+Strongest positive correlation with wine quality.
+Suggests higher alcohol wines tend to be rated better.
+
+- Strong Negative Correlations:
+
+Density ↔ Alcohol: -0.78
+As alcohol content rises, wine density decreases — because alcohol is less dense than water.
+
+pH ↔ Fixed acidity: -0.43
+Higher acidity = lower pH — textbook acid-base chemistry relationship.
+
+Alcohol ↔ Residual sugar: -0.45
+Drier wines (less sugar) generally have higher alcohol (fermentation consumes sugar).
+
+Alcohol ↔ Total sulfur dioxide: -0.45
+Higher alcohol wines tend to have lower SO₂, possibly as alcohol itself acts as a preservative.
+
+- Weak or Insignificant Correlations:
+
+Quality with most other features is weakly correlated:
+Chlorides ↔ Quality: -0.21
+Volatile acidity ↔ Quality: -0.19
+Total sulfur dioxide ↔ Quality: -0.17
+Suggests wine quality depends on a complex combination of factors, with no single overwhelming predictor besides alcohol.
+
+- Quality rating analysis:
+
+Predominance of Average Ratings:
+The majority of wine samples in the dataset received a quality rating of 6, indicating that most wines fall within an average quality range.
+
+Limited High-Quality Wines:
+Ratings of 9 were observed but were relatively rare, and no wine received the highest possible rating of 10.
+
+Scarcity of Low Ratings:
+Lower ratings, specifically 1 and 2, were either entirely absent or extremely infrequent, suggesting that extremely poor-quality wines were not present in the dataset.
+
+Moderate Distribution Range:
+The quality scores were generally clustered between 4 and 7, indicating a moderate distribution of wine quality with limited representation at the extremes.
+
+Implication for Dataset Bias:
+This distribution pattern reflects a possible sampling bias or a quality control tendency in wine production, where very poor and extremely high-quality wines are less commonly produced or sampled.
