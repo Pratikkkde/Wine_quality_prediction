@@ -72,7 +72,7 @@ Most other variables have low correlation with quality, indicating it depends on
 # Machine Learning Model
 For prediction, the Random Forest Classifier model was employed due to its robustness and efficiency in handling classification problems.
 Model Performance:
-Accuracy Achieved: 📈 82.4%
+Accuracy Achieved:  82.4%
 The Random Forest model was trained and tested on the cleaned and processed dataset, achieving reliable performance in predicting wine quality categories.
 
 # Tech Stack
