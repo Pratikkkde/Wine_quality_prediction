@@ -76,7 +76,7 @@ Accuracy Achieved: 📈 82.4%
 The Random Forest model was trained and tested on the cleaned and processed dataset, achieving reliable performance in predicting wine quality categories.
 
 # Tech Stack
-Python 🐍
+Python 
 Pandas
 NumPy
 Matplotlib
